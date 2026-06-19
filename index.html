@@ -25,7 +25,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="assets/css/styles.css?v=2" />
+  <!-- decide modo de movimento ANTES do 1º paint (evita flash) -->
+  <script>
+    (function () {
+      try {
+        var p = localStorage.getItem('vhr-motion');           // 'full' | 'reduced' | null
+        var os = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var rm = p ? (p === 'reduced') : os;
+        if (rm) document.documentElement.classList.add('rm');
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="assets/css/styles.css?v=3" />
 
   <!-- SEO: dados estruturados -->
   <script type="application/ld+json">
@@ -93,6 +105,10 @@
           <span class="lang-sep">/</span>
           <button type="button" data-lang="en" class="lang-btn" aria-pressed="false">EN</button>
         </div>
+        <button type="button" class="motion-toggle" id="motion-toggle" aria-pressed="false" aria-label="Alternar efeitos visuais" title="Efeitos visuais">
+          <span class="motion-ico" aria-hidden="true">✦</span>
+          <span class="motion-txt" data-pt="efeitos" data-en="effects">efeitos</span>
+        </button>
         <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav">
           <span></span><span></span><span></span>
         </button>
@@ -499,6 +515,6 @@
     </section>
   </div>
 
-  <script src="assets/js/main.js?v=2"></script>
+  <script src="assets/js/main.js?v=3"></script>
 </body>
 </html>

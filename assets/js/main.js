@@ -6,9 +6,32 @@
 (function () {
   'use strict';
 
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // movimento: override do usuário (localStorage) > preferência do SO
+  let motionPref = null;
+  try { motionPref = localStorage.getItem('vhr-motion'); } catch (e) {}
+  const osReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduceMotion = motionPref ? (motionPref === 'reduced') : osReduce;
+  document.documentElement.classList.toggle('rm', reduceMotion);
   const coarse = window.matchMedia('(pointer: coarse)').matches;
   const body = document.body;
+
+  // botão "efeitos": alterna e recarrega (re-inicia os sistemas no modo escolhido)
+  (function motionToggle() {
+    const btn = document.getElementById('motion-toggle');
+    if (!btn) return;
+    const on = !reduceMotion;
+    btn.classList.toggle('is-on', on);
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    btn.title = on ? 'Efeitos: ligados' : 'Efeitos: reduzidos';
+    btn.addEventListener('click', function () {
+      try {
+        const next = on ? 'reduced' : 'full';
+        localStorage.setItem('vhr-motion', next);
+        if (next === 'full') sessionStorage.removeItem('vhr-intro'); // toca a intro de novo
+      } catch (e) {}
+      location.reload();
+    });
+  })();
 
   /* ========================================================
      i18n (PT/EN)

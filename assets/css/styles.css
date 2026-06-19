@@ -327,11 +327,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .hero-cta .btn { flex: 1 1 auto; }
 }
 
-/* ---------- acessibilidade: movimento reduzido ---------- */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto; }
-  .reveal { opacity: 1; transform: none; }
-}
+/* ---------- movimento reduzido (controlado por html.rm) ---------- */
+html.rm, html.rm * , html.rm *::before, html.rm *::after { animation: none !important; transition: none !important; scroll-behavior: auto; }
+html.rm .reveal { opacity: 1; transform: none; }
 
 /* ============================================================
    @PRINT — gera o PDF do CV
@@ -473,16 +471,29 @@ body.ready .hero-card { animation: heroCard 1s .35s cubic-bezier(.2,.8,.2,1) bac
   .cursor-glow { display: none; }
 }
 
-/* ---- movimento reduzido: desliga tudo que é "wow" ---- */
-@media (prefers-reduced-motion: reduce) {
-  .intro { display: none !important; }
-  body.intro-active { overflow: auto; }
-  #bg-canvas, .cursor-glow { display: none !important; }
-  .marquee-track { animation: none !important; transform: none; }
-  .scroll-cue, .glow-1, .glow-2, .glow-3 { animation: none !important; }
-  .tilt { transform: none !important; }
-  body.ready .hero-copy > *, body.ready .hero-card { animation: none !important; }
+/* ---- movimento reduzido (html.rm): desliga o que é "wow" ---- */
+html.rm .intro { display: none !important; }
+html.rm body.intro-active, html.rm.intro-active { overflow: auto; }
+html.rm #bg-canvas, html.rm .cursor-glow { display: none !important; }
+html.rm .marquee-track { animation: none !important; transform: none; }
+html.rm .scroll-cue, html.rm .glow-1, html.rm .glow-2, html.rm .glow-3 { animation: none !important; }
+html.rm .tilt { transform: none !important; }
+html.rm .hero-copy > *, html.rm .hero-card { animation: none !important; }
+
+/* ---- botão de efeitos (motion toggle) ---- */
+.motion-toggle {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--ff-mono); font-size: .76rem; color: var(--faint);
+  padding: 6px 11px; border: 1px solid var(--border-2); border-radius: 999px;
+  background: var(--surface); transition: color .2s, border-color .2s, background .2s;
 }
+.motion-toggle .motion-ico { font-size: .8rem; line-height: 1; }
+.motion-toggle:hover { color: var(--text); border-color: var(--cyan); }
+.motion-toggle.is-on { color: #04141a; background: var(--grad); border-color: transparent; }
+.motion-toggle.is-on .motion-ico { animation: spin 6s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+html.rm .motion-toggle.is-on .motion-ico { animation: none; }
+@media (max-width: 420px) { .motion-toggle .motion-txt { display: none; } }
 
 /* ---- print: esconder elementos decorativos ---- */
 @media print {
