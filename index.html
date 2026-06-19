@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#0a0a0f" />
+
+  <title>Victor Henrique Ramos — Arquitetura de Software & IA Aplicada</title>
+  <meta name="description" content="Analista de Sistemas full stack — arquitetura de software, IA aplicada (LLM, agentes, MCP, RAG), DevOps e automação. Laravel, React, TypeScript, Node.js." />
+  <meta name="author" content="Victor Henrique Ramos" />
+
+  <!-- Open Graph / social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Victor Henrique Ramos — Arquitetura de Software & IA Aplicada" />
+  <meta property="og:description" content="Engenheiro full stack focado em IA aplicada (LLM, agentes, MCP, RAG), DevOps e automação." />
+  <meta property="og:locale" content="pt_BR" />
+  <meta name="twitter:card" content="summary" />
+
+  <!-- Favicon: monograma V em gradiente (SVG inline) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2322d3ee'/%3E%3Cstop offset='1' stop-color='%23a78bfa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0f'/%3E%3Cpath d='M16 18 L32 46 L48 18' fill='none' stroke='url(%23g)' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <!-- SEO: dados estruturados -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Victor Henrique Ramos",
+    "jobTitle": "Analista de Sistemas",
+    "description": "Arquitetura de software, IA aplicada (LLM, agentes, MCP, RAG), DevOps e automação.",
+    "url": "https://victorhramos-dev.github.io",
+    "email": "mailto:victor.h.ramos.ai@gmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Santos", "addressRegion": "SP", "addressCountry": "BR" },
+    "worksFor": { "@type": "Organization", "name": "Autoridade Portuária de Santos" },
+    "sameAs": [
+      "https://www.linkedin.com/in/victor-henrique-ramos-5b3390113",
+      "https://github.com/victorhramos-dev"
+    ],
+    "knowsAbout": ["Software Architecture", "Large Language Models", "AI Agents", "Model Context Protocol", "Retrieval-Augmented Generation", "Laravel", "React", "TypeScript", "DevOps"]
+  }
+  </script>
+</head>
+
+<body>
+  <!-- Fundo decorativo -->
+  <div class="bg-decor" aria-hidden="true">
+    <div class="grid-overlay"></div>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="glow glow-3"></div>
+  </div>
+
+  <a href="#main" class="skip-link" data-pt="Pular para o conteúdo" data-en="Skip to content">Pular para o conteúdo</a>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="#hero" class="brand" aria-label="Victor Henrique Ramos">
+        <span class="brand-mark">VHR</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Seções">
+        <a href="#sobre"        data-pt="Sobre"        data-en="About">Sobre</a>
+        <a href="#stack"        data-pt="Stack"        data-en="Stack">Stack</a>
+        <a href="#experiencia"  data-pt="Experiência"  data-en="Experience">Experiência</a>
+        <a href="#projetos"     data-pt="Projetos"     data-en="Projects">Projetos</a>
+        <a href="#contato"      data-pt="Contato"      data-en="Contact">Contato</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="lang-toggle" role="group" aria-label="Idioma / Language">
+          <button type="button" data-lang="pt" class="lang-btn is-active" aria-pressed="true">PT</button>
+          <span class="lang-sep">/</span>
+          <button type="button" data-lang="en" class="lang-btn" aria-pressed="false">EN</button>
+        </div>
+        <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow mono">
+            <span class="status-dot"></span>
+            <span data-pt="Santos, SP · Disponível para conversar" data-en="Santos, Brazil · Open to talk">Santos, SP · Disponível para conversar</span>
+          </p>
+
+          <h1 class="hero-title">
+            Victor Henrique <span class="grad">Ramos</span>
+          </h1>
+
+          <p class="hero-role">
+            <span data-pt="Analista de Sistemas —" data-en="Systems Analyst —">Analista de Sistemas —</span>
+            <span class="rotator" id="rotator" aria-live="polite"></span>
+          </p>
+
+          <p class="hero-sub" data-pt="Construo software de ponta a ponta com foco em arquitetura e IA aplicada: gateways de LLM, agentes, Model Context Protocol (MCP) e RAG — sustentado por DevOps, testes e CI/CD."
+             data-en="I build software end to end with a focus on architecture and applied AI: LLM gateways, agents, the Model Context Protocol (MCP) and RAG — backed by DevOps, tests and CI/CD.">
+            Construo software de ponta a ponta com foco em arquitetura e IA aplicada: gateways de LLM, agentes, Model Context Protocol (MCP) e RAG — sustentado por DevOps, testes e CI/CD.
+          </p>
+
+          <ul class="hero-chips mono" aria-label="Destaques">
+            <li>▸ Gateway LLM multi-provedor</li>
+            <li>▸ MCP &amp; agentes</li>
+            <li>▸ RAG / Qdrant</li>
+            <li>▸ CI/CD &amp; Docker</li>
+          </ul>
+
+          <div class="hero-cta">
+            <a href="#projetos" class="btn btn-primary" data-pt="Ver projetos" data-en="View projects">Ver projetos</a>
+            <a href="https://www.linkedin.com/in/victor-henrique-ramos-5b3390113" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+            <button type="button" class="btn btn-ghost" id="download-cv" data-pt="Baixar CV (PDF)" data-en="Download CV (PDF)">Baixar CV (PDF)</button>
+          </div>
+        </div>
+
+        <!-- Terminal/JSON card -->
+        <aside class="hero-card glass" aria-hidden="true">
+          <div class="card-bar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="card-title mono">argus-agent · mcp</span>
+          </div>
+          <pre class="code mono"><span class="c-key">{</span>
+  <span class="c-prop">"agent"</span>: <span class="c-str">"argus"</span>,
+  <span class="c-prop">"llm"</span>: <span class="c-str">"multi-provider"</span>,
+  <span class="c-prop">"providers"</span>: <span class="c-num">6</span>,
+  <span class="c-prop">"transport"</span>: <span class="c-str">"mcp/http+stdio"</span>,
+  <span class="c-prop">"tools"</span>: <span class="c-num">105</span>,
+  <span class="c-prop">"rag"</span>: <span class="c-str">"qdrant"</span>,
+  <span class="c-prop">"stream"</span>: <span class="c-str">"sse"</span>,
+  <span class="c-prop">"stack"</span>: [<span class="c-str">"laravel"</span>, <span class="c-str">"react"</span>, <span class="c-str">"node"</span>]
+<span class="c-key">}</span></pre>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============ STATS ============ -->
+    <section class="stats" aria-label="Números">
+      <div class="container stats-grid">
+        <div class="stat"><span class="stat-num" data-count="8">8</span><span class="stat-label" data-pt="servidores MCP" data-en="MCP servers">servidores MCP</span></div>
+        <div class="stat"><span class="stat-num" data-count="105" data-suffix="+">105+</span><span class="stat-label" data-pt="ferramentas integradas" data-en="integrated tools">ferramentas integradas</span></div>
+        <div class="stat"><span class="stat-num" data-count="270" data-suffix="+">270+</span><span class="stat-label" data-pt="testes automatizados" data-en="automated tests">testes automatizados</span></div>
+        <div class="stat"><span class="stat-num" data-count="6" data-suffix="+">6+</span><span class="stat-label" data-pt="provedores de LLM" data-en="LLM providers">provedores de LLM</span></div>
+      </div>
+    </section>
+
+    <!-- ============ SOBRE ============ -->
+    <section class="section" id="sobre">
+      <div class="container">
+        <p class="kicker mono" data-pt="01 — Sobre" data-en="01 — About">01 — Sobre</p>
+        <h2 class="section-title" data-pt="Engenharia do código à arquitetura" data-en="Engineering from code to architecture">Engenharia do código à arquitetura</h2>
+        <div class="about-grid">
+          <div class="about-text">
+            <p data-pt="Sou Analista de Sistemas full stack com foco em arquitetura de software e IA aplicada. Na Autoridade Portuária de Santos (GEDES), projetei e desenvolvi uma plataforma corporativa de IA conversacional com agentes — do código à arquitetura."
+               data-en="I'm a full stack Systems Analyst focused on software architecture and applied AI. At the Port Authority of Santos (GEDES), I designed and built an enterprise conversational AI platform with agents — from code to architecture.">
+              Sou Analista de Sistemas full stack com foco em arquitetura de software e IA aplicada. Na Autoridade Portuária de Santos (GEDES), projetei e desenvolvi uma plataforma corporativa de IA conversacional com agentes — do código à arquitetura.
+            </p>
+            <p data-pt="Implementei um gateway multi-provedor de LLM, um sistema de ferramentas via Model Context Protocol (MCP), uma camada de RAG sobre banco vetorial e streaming em tempo real — sustentados por CI/CD, testes automatizados e análise estática."
+               data-en="I built a multi-provider LLM gateway, a tool system over the Model Context Protocol (MCP), a RAG layer on a vector database and real-time streaming — all backed by CI/CD, automated tests and static analysis.">
+              Implementei um gateway multi-provedor de LLM, um sistema de ferramentas via Model Context Protocol (MCP), uma camada de RAG sobre banco vetorial e streaming em tempo real — sustentados por CI/CD, testes automatizados e análise estática.
+            </p>
+            <p data-pt="Trajetória: base inicial em engenharia (UNESP), anos de desenvolvimento web full stack e formação em Análise e Desenvolvimento de Sistemas. Perfil analítico, pragmático e orientado a soluções documentadas e testáveis."
+               data-en="Background: an engineering foundation (UNESP), years of full stack web development and a degree in Systems Analysis and Development. Analytical, pragmatic, and oriented to documented, testable solutions.">
+              Trajetória: base inicial em engenharia (UNESP), anos de desenvolvimento web full stack e formação em Análise e Desenvolvimento de Sistemas. Perfil analítico, pragmático e orientado a soluções documentadas e testáveis.
+            </p>
+          </div>
+          <ul class="about-highlights">
+            <li><strong data-pt="IA aplicada" data-en="Applied AI">IA aplicada</strong><span data-pt="LLMs, agentes, orquestração, MCP, RAG e embeddings." data-en="LLMs, agents, orchestration, MCP, RAG and embeddings.">LLMs, agentes, orquestração, MCP, RAG e embeddings.</span></li>
+            <li><strong data-pt="Full stack" data-en="Full stack">Full stack</strong><span data-pt="Laravel/PHP, React/TypeScript e Node.js em arquitetura multi-container." data-en="Laravel/PHP, React/TypeScript and Node.js in a multi-container architecture.">Laravel/PHP, React/TypeScript e Node.js em arquitetura multi-container.</span></li>
+            <li><strong data-pt="Engenharia" data-en="Engineering">Engenharia</strong><span data-pt="CI/CD, testes, análise estática (PHPStan nível 8) e ADRs." data-en="CI/CD, testing, static analysis (PHPStan level 8) and ADRs.">CI/CD, testes, análise estática (PHPStan nível 8) e ADRs.</span></li>
+            <li><strong data-pt="TIC público" data-en="Public IT">TIC público</strong><span data-pt="Planejamento técnico, ETP/TR, análise de riscos e benchmarking." data-en="Technical planning, studies, risk analysis and benchmarking.">Planejamento técnico, ETP/TR, análise de riscos e benchmarking.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STACK ============ -->
+    <section class="section" id="stack">
+      <div class="container">
+        <p class="kicker mono" data-pt="02 — Stack" data-en="02 — Stack">02 — Stack</p>
+        <h2 class="section-title" data-pt="Tecnologias & competências" data-en="Technologies & skills">Tecnologias &amp; competências</h2>
+        <div class="stack-grid">
+
+          <article class="stack-card glass">
+            <h3 data-pt="IA aplicada" data-en="Applied AI">IA aplicada</h3>
+            <ul class="tags mono">
+              <li>LLM Gateway</li><li>AI Agents</li><li>MCP</li><li>RAG</li><li>Embeddings</li><li>Qdrant</li><li>Function Calling</li><li>SSE Streaming</li><li>Prompt Eng.</li>
+            </ul>
+          </article>
+
+          <article class="stack-card glass">
+            <h3 data-pt="Backend" data-en="Backend">Backend</h3>
+            <ul class="tags mono">
+              <li>PHP</li><li>Laravel 12</li><li>Node.js</li><li>Express</li><li>REST APIs</li><li>JSON-RPC</li><li>Sanctum</li><li>Eloquent</li><li>Zod</li>
+            </ul>
+          </article>
+
+          <article class="stack-card glass">
+            <h3 data-pt="Frontend" data-en="Frontend">Frontend</h3>
+            <ul class="tags mono">
+              <li>React 19</li><li>TypeScript</li><li>Vue.js</li><li>Vite</li><li>Tailwind</li><li>Radix / shadcn</li><li>TanStack Query</li><li>Zustand</li><li>ECharts</li>
+            </ul>
+          </article>
+
+          <article class="stack-card glass">
+            <h3 data-pt="Dados" data-en="Data">Dados</h3>
+            <ul class="tags mono">
+              <li>PostgreSQL</li><li>PostGIS</li><li>MySQL</li><li>MariaDB</li><li>Redis</li><li>Qdrant</li><li>Oracle</li><li>DB2</li><li>SQLite</li>
+            </ul>
+          </article>
+
+          <article class="stack-card glass">
+            <h3 data-pt="DevOps & infra" data-en="DevOps & infra">DevOps &amp; infra</h3>
+            <ul class="tags mono">
+              <li>Docker</li><li>Docker Compose</li><li>GitLab CI/CD</li><li>Harbor</li><li>Nginx</li><li>Linux</li><li>Podman</li><li>Observabilidade</li><li>K8s</li>
+            </ul>
+          </article>
+
+          <article class="stack-card glass">
+            <h3 data-pt="Qualidade & testes" data-en="Quality & testing">Qualidade &amp; testes</h3>
+            <ul class="tags mono">
+              <li>Pest</li><li>PHPUnit</li><li>Vitest</li><li>Playwright</li><li>PHPStan</li><li>ESLint</li><li>Pint</li><li>ADRs</li><li>TDD</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIÊNCIA ============ -->
+    <section class="section" id="experiencia">
+      <div class="container">
+        <p class="kicker mono" data-pt="03 — Experiência" data-en="03 — Experience">03 — Experiência</p>
+        <h2 class="section-title" data-pt="Trajetória profissional" data-en="Career timeline">Trajetória profissional</h2>
+
+        <ol class="timeline">
+          <li class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-body glass">
+              <div class="tl-head">
+                <h3>Autoridade Portuária de Santos</h3>
+                <span class="tl-date mono">2025 — <span data-pt="atual" data-en="present">atual</span></span>
+              </div>
+              <p class="tl-role" data-pt="Analista de Sistemas · GEDES" data-en="Systems Analyst · GEDES">Analista de Sistemas · GEDES</p>
+              <p data-pt="Projetei e desenvolvi uma plataforma corporativa de IA com agentes (Laravel 12, React 19, Node.js, Docker): gateway multi-provedor de LLM, ferramentas via MCP, RAG sobre Qdrant e streaming em tempo real. Estruturei o CI/CD no GitLab e atuo no planejamento técnico de TIC."
+                 data-en="I designed and built an enterprise AI platform with agents (Laravel 12, React 19, Node.js, Docker): multi-provider LLM gateway, MCP tooling, RAG over Qdrant and real-time streaming. I set up the GitLab CI/CD and work on technical IT planning.">
+                Projetei e desenvolvi uma plataforma corporativa de IA com agentes (Laravel 12, React 19, Node.js, Docker): gateway multi-provedor de LLM, ferramentas via MCP, RAG sobre Qdrant e streaming em tempo real. Estruturei o CI/CD no GitLab e atuo no planejamento técnico de TIC.
+              </p>
+            </div>
+          </li>
+
+          <li class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-body glass">
+              <div class="tl-head">
+                <h3>CAIXA</h3>
+                <span class="tl-date mono">2024 — 2025</span>
+              </div>
+              <p class="tl-role" data-pt="Técnico Bancário · TI" data-en="IT Technician">Técnico Bancário · TI</p>
+              <p data-pt="TI bancária com sistemas corporativos de grande escala: COBOL, Java, Oracle e DB2, com rotinas de testes em ambiente financeiro público."
+                 data-en="Banking IT with large-scale corporate systems: COBOL, Java, Oracle and DB2, with testing routines in a public financial environment.">
+                TI bancária com sistemas corporativos de grande escala: COBOL, Java, Oracle e DB2, com rotinas de testes em ambiente financeiro público.
+              </p>
+            </div>
+          </li>
+
+          <li class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-body glass">
+              <div class="tl-head">
+                <h3>Codemarket</h3>
+                <span class="tl-date mono">2017 — 2022</span>
+              </div>
+              <p class="tl-role" data-pt="Desenvolvedor Full Stack" data-en="Full Stack Developer">Desenvolvedor Full Stack</p>
+              <p data-pt="Desenvolvimento full stack de sistemas web e e-commerce (PHP, OpenCart, Vue.js, TypeScript, MySQL/MariaDB): backend, frontend, integração de sistemas e resolução de problemas complexos."
+                 data-en="Full stack development of web systems and e-commerce (PHP, OpenCart, Vue.js, TypeScript, MySQL/MariaDB): backend, frontend, system integration and complex problem solving.">
+                Desenvolvimento full stack de sistemas web e e-commerce (PHP, OpenCart, Vue.js, TypeScript, MySQL/MariaDB): backend, frontend, integração de sistemas e resolução de problemas complexos.
+              </p>
+            </div>
+          </li>
+
+          <li class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-body glass">
+              <div class="tl-head">
+                <h3>Kauser</h3>
+                <span class="tl-date mono">2015 — 2017</span>
+              </div>
+              <p class="tl-role" data-pt="Diretor Técnico" data-en="Technical Director">Diretor Técnico</p>
+              <p data-pt="Direcionamento técnico de soluções e processos de execução; estruturação de sistemas e entregas web com PHP, OpenCart, Vue.js, TypeScript e MySQL."
+                 data-en="Technical direction of solutions and execution processes; structuring of systems and web deliveries with PHP, OpenCart, Vue.js, TypeScript and MySQL.">
+                Direcionamento técnico de soluções e processos de execução; estruturação de sistemas e entregas web com PHP, OpenCart, Vue.js, TypeScript e MySQL.
+              </p>
+            </div>
+          </li>
+
+          <li class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-body glass">
+              <div class="tl-head">
+                <h3>W/Buzz Marketing Digital</h3>
+                <span class="tl-date mono">2014 — 2016</span>
+              </div>
+              <p class="tl-role" data-pt="Desenvolvedor Sênior" data-en="Senior Developer">Desenvolvedor Sênior</p>
+              <p data-pt="Desenvolvimento de e-commerces, sites e sistemas web (backend e frontend), com apoio a rotinas de DevOps, publicação e sustentação."
+                 data-en="Development of e-commerce sites and web systems (backend and frontend), supporting DevOps routines, deployment and maintenance.">
+                Desenvolvimento de e-commerces, sites e sistemas web (backend e frontend), com apoio a rotinas de DevOps, publicação e sustentação.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ PROJETOS ============ -->
+    <section class="section" id="projetos">
+      <div class="container">
+        <p class="kicker mono" data-pt="04 — Projetos" data-en="04 — Projects">04 — Projetos</p>
+        <h2 class="section-title" data-pt="Projetos selecionados" data-en="Selected projects">Projetos selecionados</h2>
+
+        <!-- Featured: Argus -->
+        <article class="project-featured glass">
+          <div class="pf-head">
+            <div>
+              <h3>Argus Agent</h3>
+              <p class="pf-sub" data-pt="Framework corporativo de IA — agentes &amp; chat" data-en="Enterprise AI framework — agents &amp; chat">Framework corporativo de IA — agentes &amp; chat</p>
+            </div>
+            <span class="badge mono" data-pt="Em produção" data-en="In production">Em produção</span>
+          </div>
+          <p class="pf-desc" data-pt="Plataforma interna, genérica e extensível, de IA conversacional com agentes configuráveis e ferramentas por domínio. Arquitetura multi-container, descrita em nível conceitual."
+             data-en="An internal, generic and extensible conversational AI platform with configurable agents and domain tools. Multi-container architecture, described at a conceptual level.">
+            Plataforma interna, genérica e extensível, de IA conversacional com agentes configuráveis e ferramentas por domínio. Arquitetura multi-container, descrita em nível conceitual.
+          </p>
+          <ul class="pf-points">
+            <li data-pt="Gateway multi-provedor de LLM com function calling normalizado e streaming (SSE)." data-en="Multi-provider LLM gateway with normalized function calling and streaming (SSE).">Gateway multi-provedor de LLM com function calling normalizado e streaming (SSE).</li>
+            <li data-pt="Sistema de ferramentas via MCP (8 servidores em TypeScript) e bridge HTTP↔STDIO em Node.js." data-en="MCP tool system (8 TypeScript servers) and an HTTP↔STDIO bridge in Node.js.">Sistema de ferramentas via MCP (8 servidores em TypeScript) e bridge HTTP↔STDIO em Node.js.</li>
+            <li data-pt="Camada de RAG sobre banco vetorial (Qdrant) e orquestração de agentes com sub-agentes." data-en="RAG layer over a vector database (Qdrant) and agent orchestration with sub-agents.">Camada de RAG sobre banco vetorial (Qdrant) e orquestração de agentes com sub-agentes.</li>
+            <li data-pt="Robustez: circuit breaker, auto-continuação e permissões em cascata (RBAC)." data-en="Robustness: circuit breaker, auto-continuation and cascading permissions (RBAC).">Robustez: circuit breaker, auto-continuação e permissões em cascata (RBAC).</li>
+          </ul>
+          <ul class="tags mono">
+            <li>Laravel 12</li><li>React 19</li><li>Node.js</li><li>MCP</li><li>RAG</li><li>Qdrant</li><li>PostgreSQL</li><li>Redis</li><li>Docker</li><li>GitLab CI/CD</li>
+          </ul>
+          <p class="pf-note mono" data-pt="Nota: descrição em alto nível — sem endpoints, credenciais ou integrações internas." data-en="Note: high-level description — no endpoints, credentials or internal integrations.">
+            Nota: descrição em alto nível — sem endpoints, credenciais ou integrações internas.
+          </p>
+        </article>
+
+        <div class="project-grid">
+          <article class="project-card glass">
+            <h3 data-pt="Arquiteturas & PRDs" data-en="Architectures & PRDs">Arquiteturas &amp; PRDs</h3>
+            <p data-pt="Especificações e arquiteturas de referência para sistemas corporativos: API-first/SPA, tempo real (SSE/WebSocket), mensageria, PostGIS, telemetria e observabilidade."
+               data-en="Specs and reference architectures for enterprise systems: API-first/SPA, real-time (SSE/WebSocket), messaging, PostGIS, telemetry and observability.">
+              Especificações e arquiteturas de referência para sistemas corporativos: API-first/SPA, tempo real (SSE/WebSocket), mensageria, PostGIS, telemetria e observabilidade.
+            </p>
+            <ul class="tags mono"><li>Arquitetura</li><li>PRD</li><li>PostGIS</li><li>Integrações</li></ul>
+          </article>
+
+          <article class="project-card glass">
+            <h3 data-pt="Estudos técnicos de TIC" data-en="IT technical studies">Estudos técnicos de TIC</h3>
+            <p data-pt="DevOps/CI-CD, observabilidade/APM, MLOps/DataOps, segurança e quality gates; benchmarking e justificativas técnicas para contratações em empresa pública."
+               data-en="DevOps/CI-CD, observability/APM, MLOps/DataOps, security and quality gates; benchmarking and technical rationale for public-sector procurement.">
+              DevOps/CI-CD, observabilidade/APM, MLOps/DataOps, segurança e quality gates; benchmarking e justificativas técnicas para contratações em empresa pública.
+            </p>
+            <ul class="tags mono"><li>DevOps</li><li>ETP/TR</li><li>Riscos</li><li>Benchmarking</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTATO ============ -->
+    <section class="section" id="contato">
+      <div class="container contact-wrap">
+        <p class="kicker mono" data-pt="05 — Contato" data-en="05 — Contact">05 — Contato</p>
+        <h2 class="section-title" data-pt="Vamos conversar" data-en="Let's talk">Vamos conversar</h2>
+        <p class="contact-sub" data-pt="Aberto a oportunidades em arquitetura de software, IA aplicada e engenharia de plataforma."
+           data-en="Open to opportunities in software architecture, applied AI and platform engineering.">
+          Aberto a oportunidades em arquitetura de software, IA aplicada e engenharia de plataforma.
+        </p>
+        <div class="contact-links">
+          <a class="contact-btn btn-primary" href="mailto:victor.h.ramos.ai@gmail.com">E-mail</a>
+          <a class="contact-btn btn-ghost" href="https://www.linkedin.com/in/victor-henrique-ramos-5b3390113" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="contact-btn btn-ghost" href="https://github.com/victorhramos-dev" target="_blank" rel="noopener">GitHub</a>
+          <button type="button" class="contact-btn btn-ghost" id="download-cv-2" data-pt="Baixar CV (PDF)" data-en="Download CV (PDF)">Baixar CV (PDF)</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="mono">© <span id="year">2026</span> Victor Henrique Ramos</span>
+      <span class="mono footer-built" data-pt="Feito com HTML, CSS e JavaScript" data-en="Built with HTML, CSS and JavaScript">Feito com HTML, CSS e JavaScript</span>
+    </div>
+  </footer>
+
+  <!-- ============ CV PRINT-ONLY (vira o PDF ao imprimir) ============ -->
+  <div class="print-cv" aria-hidden="true">
+    <header class="pcv-head">
+      <h1>Victor Henrique Ramos</h1>
+      <p class="pcv-title" data-pt="Analista de Sistemas · Arquitetura de Software · IA Aplicada · DevOps"
+         data-en="Systems Analyst · Software Architecture · Applied AI · DevOps">Analista de Sistemas · Arquitetura de Software · IA Aplicada · DevOps</p>
+      <p class="pcv-contact">Santos, SP · victor.h.ramos.ai@gmail.com · linkedin.com/in/victor-henrique-ramos-5b3390113 · github.com/victorhramos-dev</p>
+    </header>
+
+    <section class="pcv-sec">
+      <h2 data-pt="Resumo" data-en="Summary">Resumo</h2>
+      <p data-pt="Analista de Sistemas full stack com foco em arquitetura de software e IA aplicada. Na Autoridade Portuária de Santos (GEDES), projetei e desenvolvi uma plataforma corporativa de IA com agentes: gateway multi-provedor de LLM, ferramentas via MCP, RAG sobre banco vetorial (Qdrant) e streaming em tempo real, com Laravel 12, React 19 e Node.js. Sustento as entregas com CI/CD (GitLab), testes (Pest, Vitest, Playwright) e análise estática (PHPStan nível 8)."
+         data-en="Full stack Systems Analyst focused on software architecture and applied AI. At the Port Authority of Santos (GEDES), I designed and built an enterprise AI platform with agents: multi-provider LLM gateway, MCP tooling, RAG over a vector database (Qdrant) and real-time streaming, with Laravel 12, React 19 and Node.js. Backed by CI/CD (GitLab), tests (Pest, Vitest, Playwright) and static analysis (PHPStan level 8).">
+        Analista de Sistemas full stack com foco em arquitetura de software e IA aplicada. Na Autoridade Portuária de Santos (GEDES), projetei e desenvolvi uma plataforma corporativa de IA com agentes: gateway multi-provedor de LLM, ferramentas via MCP, RAG sobre banco vetorial (Qdrant) e streaming em tempo real, com Laravel 12, React 19 e Node.js. Sustento as entregas com CI/CD (GitLab), testes (Pest, Vitest, Playwright) e análise estática (PHPStan nível 8).
+      </p>
+    </section>
+
+    <section class="pcv-sec">
+      <h2 data-pt="Competências" data-en="Skills">Competências</h2>
+      <p>Arquitetura de Software · IA Aplicada (LLM, Agentes, MCP, RAG) · Embeddings · Qdrant · PHP/Laravel · React · Vue.js · TypeScript · Node.js · PostgreSQL/PostGIS · Redis · Docker · GitLab CI/CD · DevOps · Pest/PHPUnit · Vitest · Playwright · PHPStan · Observabilidade · Planejamento de TIC (ETP/TR) · Análise de Riscos</p>
+    </section>
+
+    <section class="pcv-sec">
+      <h2 data-pt="Experiência" data-en="Experience">Experiência</h2>
+      <div class="pcv-job">
+        <h3>Autoridade Portuária de Santos — <span data-pt="Analista de Sistemas (GEDES)" data-en="Systems Analyst (GEDES)">Analista de Sistemas (GEDES)</span> <span class="pcv-when">2025—<span data-pt="atual" data-en="present">atual</span></span></h3>
+        <ul>
+          <li data-pt="Plataforma corporativa de IA com agentes, de ponta a ponta (Laravel 12, React 19, Node.js, Docker)." data-en="Enterprise AI platform with agents, end to end (Laravel 12, React 19, Node.js, Docker).">Plataforma corporativa de IA com agentes, de ponta a ponta (Laravel 12, React 19, Node.js, Docker).</li>
+          <li data-pt="Gateway multi-provedor de LLM com function calling e streaming em tempo real (SSE)." data-en="Multi-provider LLM gateway with function calling and real-time streaming (SSE).">Gateway multi-provedor de LLM com function calling e streaming em tempo real (SSE).</li>
+          <li data-pt="Sistema de ferramentas via MCP e RAG sobre banco vetorial (Qdrant)." data-en="MCP tool system and RAG over a vector database (Qdrant).">Sistema de ferramentas via MCP e RAG sobre banco vetorial (Qdrant).</li>
+          <li data-pt="CI/CD no GitLab com quality gates, testes automatizados e deploy automatizado." data-en="GitLab CI/CD with quality gates, automated tests and automated deployment.">CI/CD no GitLab com quality gates, testes automatizados e deploy automatizado.</li>
+          <li data-pt="Planejamento técnico de TIC para contratações públicas (ETP/TR, riscos, benchmarking)." data-en="Technical IT planning for public procurement (studies, risk, benchmarking).">Planejamento técnico de TIC para contratações públicas (ETP/TR, riscos, benchmarking).</li>
+        </ul>
+      </div>
+      <div class="pcv-job">
+        <h3>CAIXA — <span data-pt="Técnico Bancário · TI" data-en="IT Technician">Técnico Bancário · TI</span> <span class="pcv-when">2024—2025</span></h3>
+        <ul><li data-pt="Sistemas corporativos de grande escala: COBOL, Java, Oracle, DB2 e testes." data-en="Large-scale corporate systems: COBOL, Java, Oracle, DB2 and testing.">Sistemas corporativos de grande escala: COBOL, Java, Oracle, DB2 e testes.</li></ul>
+      </div>
+      <div class="pcv-job">
+        <h3>Codemarket — <span data-pt="Desenvolvedor Full Stack" data-en="Full Stack Developer">Desenvolvedor Full Stack</span> <span class="pcv-when">2017—2022</span></h3>
+        <ul><li data-pt="Sistemas web e e-commerce com PHP, OpenCart, Vue.js, TypeScript e MySQL/MariaDB." data-en="Web systems and e-commerce with PHP, OpenCart, Vue.js, TypeScript and MySQL/MariaDB.">Sistemas web e e-commerce com PHP, OpenCart, Vue.js, TypeScript e MySQL/MariaDB.</li></ul>
+      </div>
+      <div class="pcv-job">
+        <h3>Kauser — <span data-pt="Diretor Técnico" data-en="Technical Director">Diretor Técnico</span> <span class="pcv-when">2015—2017</span></h3>
+        <ul><li data-pt="Direção técnica de soluções e processos; entregas web full stack." data-en="Technical direction of solutions and processes; full stack web deliveries.">Direção técnica de soluções e processos; entregas web full stack.</li></ul>
+      </div>
+      <div class="pcv-job">
+        <h3>W/Buzz — <span data-pt="Desenvolvedor Sênior" data-en="Senior Developer">Desenvolvedor Sênior</span> <span class="pcv-when">2014—2016</span></h3>
+        <ul><li data-pt="E-commerces, sites e sistemas web; backend, frontend e apoio a DevOps." data-en="E-commerce, sites and web systems; backend, frontend and DevOps support.">E-commerces, sites e sistemas web; backend, frontend e apoio a DevOps.</li></ul>
+      </div>
+    </section>
+
+    <section class="pcv-sec">
+      <h2 data-pt="Formação" data-en="Education">Formação</h2>
+      <ul>
+        <li data-pt="UNIP — Análise e Desenvolvimento de Sistemas (concluído, 2023–2025)." data-en="UNIP — Systems Analysis and Development (completed, 2023–2025).">UNIP — Análise e Desenvolvimento de Sistemas (concluído, 2023–2025).</li>
+        <li data-pt="UNESP — Engenharia Mecânica (incompleto, 2007–2012)." data-en="UNESP — Mechanical Engineering (incomplete, 2007–2012).">UNESP — Engenharia Mecânica (incompleto, 2007–2012).</li>
+      </ul>
+    </section>
+
+    <section class="pcv-sec">
+      <h2 data-pt="Idiomas" data-en="Languages">Idiomas</h2>
+      <p data-pt="Português (nativo) · Inglês (leitura/escrita fluentes)" data-en="Portuguese (native) · English (fluent reading/writing)">Português (nativo) · Inglês (leitura/escrita fluentes)</p>
+    </section>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
