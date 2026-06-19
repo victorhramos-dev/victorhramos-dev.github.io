@@ -49,12 +49,25 @@
 </head>
 
 <body>
+  <!-- Intro / abertura -->
+  <div class="intro" id="intro">
+    <div class="intro-inner">
+      <span class="intro-mark" aria-hidden="true">VHR</span>
+      <span class="intro-name mono">VICTOR&nbsp;HENRIQUE&nbsp;RAMOS</span>
+      <div class="intro-bar"><i></i></div>
+    </div>
+  </div>
+
+  <!-- Spotlight do cursor -->
+  <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
   <!-- Fundo decorativo -->
   <div class="bg-decor" aria-hidden="true">
-    <div class="grid-overlay"></div>
-    <div class="glow glow-1"></div>
-    <div class="glow glow-2"></div>
-    <div class="glow glow-3"></div>
+    <canvas id="bg-canvas"></canvas>
+    <div class="grid-overlay" data-parallax="0.12"></div>
+    <div class="glow glow-1" data-parallax="0.30"></div>
+    <div class="glow glow-2" data-parallax="0.22"></div>
+    <div class="glow glow-3" data-parallax="0.42"></div>
   </div>
 
   <a href="#main" class="skip-link" data-pt="Pular para o conteúdo" data-en="Skip to content">Pular para o conteúdo</a>
@@ -99,7 +112,7 @@
           </p>
 
           <h1 class="hero-title">
-            Victor Henrique <span class="grad">Ramos</span>
+            <span class="scramble" data-final="Victor Henrique">Victor Henrique</span> <span class="grad scramble" data-final="Ramos">Ramos</span>
           </h1>
 
           <p class="hero-role">
@@ -120,7 +133,7 @@
           </ul>
 
           <div class="hero-cta">
-            <a href="#projetos" class="btn btn-primary" data-pt="Ver projetos" data-en="View projects">Ver projetos</a>
+            <a href="#projetos" class="btn btn-primary magnetic" data-pt="Ver projetos" data-en="View projects">Ver projetos</a>
             <a href="https://www.linkedin.com/in/victor-henrique-ramos-5b3390113" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
             <button type="button" class="btn btn-ghost" id="download-cv" data-pt="Baixar CV (PDF)" data-en="Download CV (PDF)">Baixar CV (PDF)</button>
           </div>
@@ -144,9 +157,15 @@
 <span class="c-key">}</span></pre>
         </aside>
       </div>
+
+      <a href="#stats" class="scroll-cue" aria-label="Rolar" data-pt="rolar" data-en="scroll">
+        <span class="mono" data-pt="rolar" data-en="scroll">rolar</span>
+        <span class="scroll-cue-line"></span>
+      </a>
     </section>
 
     <!-- ============ STATS ============ -->
+    <span id="stats"></span>
     <section class="stats" aria-label="Números">
       <div class="container stats-grid">
         <div class="stat"><span class="stat-num" data-count="8">8</span><span class="stat-label" data-pt="servidores MCP" data-en="MCP servers">servidores MCP</span></div>
@@ -155,6 +174,14 @@
         <div class="stat"><span class="stat-num" data-count="6" data-suffix="+">6+</span><span class="stat-label" data-pt="provedores de LLM" data-en="LLM providers">provedores de LLM</span></div>
       </div>
     </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track mono">
+        <span>Laravel</span><span>React</span><span>TypeScript</span><span>Node.js</span><span>MCP</span><span>RAG</span><span>Qdrant</span><span>PostgreSQL</span><span>Redis</span><span>Docker</span><span>GitLab&nbsp;CI/CD</span><span>Vue.js</span><span>PHP</span><span>Python</span><span>PostGIS</span><span>LLM</span>
+        <span>Laravel</span><span>React</span><span>TypeScript</span><span>Node.js</span><span>MCP</span><span>RAG</span><span>Qdrant</span><span>PostgreSQL</span><span>Redis</span><span>Docker</span><span>GitLab&nbsp;CI/CD</span><span>Vue.js</span><span>PHP</span><span>Python</span><span>PostGIS</span><span>LLM</span>
+      </div>
+    </div>
 
     <!-- ============ SOBRE ============ -->
     <section class="section" id="sobre">
@@ -389,7 +416,7 @@
           Aberto a oportunidades em arquitetura de software, IA aplicada e engenharia de plataforma.
         </p>
         <div class="contact-links">
-          <a class="contact-btn btn-primary" href="mailto:victor.h.ramos.ai@gmail.com">E-mail</a>
+          <a class="contact-btn btn-primary magnetic" href="mailto:victor.h.ramos.ai@gmail.com">E-mail</a>
           <a class="contact-btn btn-ghost" href="https://www.linkedin.com/in/victor-henrique-ramos-5b3390113" target="_blank" rel="noopener">LinkedIn</a>
           <a class="contact-btn btn-ghost" href="https://github.com/victorhramos-dev" target="_blank" rel="noopener">GitHub</a>
           <button type="button" class="contact-btn btn-ghost" id="download-cv-2" data-pt="Baixar CV (PDF)" data-en="Download CV (PDF)">Baixar CV (PDF)</button>

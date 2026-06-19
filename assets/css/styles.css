@@ -357,3 +357,134 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .pcv-job li, .pcv-sec li { font-size: 10pt; color: #222; margin-bottom: 2px; }
   a { color: #111; text-decoration: none; }
 }
+
+/* ============================================================
+   "MÁXIMO WOW" — intro, canvas, parallax, tilt, cursor, marquee
+   ============================================================ */
+
+/* ---- canvas de partículas (atrás de tudo) ---- */
+#bg-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: .9; }
+
+/* glows: animação só de opacidade (transform fica livre p/ parallax via JS) */
+.glow-1, .glow-2, .glow-3 { animation: glowBreath 9s ease-in-out infinite; will-change: transform, opacity; }
+.glow-2 { animation-delay: -3s; } .glow-3 { animation-delay: -6s; }
+@keyframes glowBreath { 0%, 100% { opacity: .38; } 50% { opacity: .60; } }
+
+/* ---- spotlight do cursor (global) ---- */
+.cursor-glow {
+  position: fixed; top: 0; left: 0; width: 460px; height: 460px; margin: -230px 0 0 -230px;
+  border-radius: 50%; pointer-events: none; z-index: 1; opacity: 0;
+  background: radial-gradient(circle, rgba(34,211,238,.10), rgba(167,139,250,.06) 40%, transparent 65%);
+  mix-blend-mode: screen; transition: opacity .4s ease; will-change: transform;
+}
+body.cursor-on .cursor-glow { opacity: 1; }
+
+/* ---- INTRO / abertura ---- */
+.intro {
+  position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center;
+  background: radial-gradient(ellipse at center, #0d0d16 0%, #06060a 70%);
+  transition: opacity .6s ease, clip-path .9s cubic-bezier(.76,0,.24,1);
+  clip-path: inset(0 0 0 0);
+}
+.intro.done { clip-path: inset(0 0 100% 0); opacity: 0; pointer-events: none; }
+.intro-inner { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+.intro-mark {
+  font-family: var(--ff-head); font-weight: 800; font-size: clamp(3rem, 12vw, 6rem);
+  letter-spacing: .1em; background: var(--grad);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  opacity: 0; transform: translateY(18px) scale(.92); animation: introMark .9s .1s cubic-bezier(.2,.8,.2,1) forwards;
+  text-shadow: 0 0 40px rgba(34,211,238,.25);
+}
+.intro-name {
+  font-size: clamp(.7rem, 2.4vw, .95rem); letter-spacing: .55em; color: var(--muted);
+  opacity: 0; transform: translateY(10px); animation: introName .7s .5s ease forwards; padding-left: .55em;
+}
+.intro-bar { width: min(240px, 60vw); height: 2px; background: rgba(255,255,255,.10); border-radius: 2px; overflow: hidden; }
+.intro-bar i { display: block; height: 100%; width: 0; background: var(--grad); animation: introBar 1.25s .35s cubic-bezier(.6,0,.2,1) forwards; }
+@keyframes introMark { to { opacity: 1; transform: none; } }
+@keyframes introName { to { opacity: 1; transform: none; } }
+@keyframes introBar  { to { width: 100%; } }
+body.intro-active { overflow: hidden; }
+
+/* ---- scramble (nome do hero) ---- */
+.scramble.is-scrambling { color: var(--cyan); -webkit-text-fill-color: var(--cyan); }
+
+/* ---- TILT 3D + spotlight nos cards ---- */
+.tilt {
+  position: relative;
+  transform: perspective(900px) rotateX(var(--ry, 0deg)) rotateY(var(--rx, 0deg)) translateZ(0);
+  transform-style: preserve-3d; transition: transform .35s cubic-bezier(.2,.7,.2,1);
+  will-change: transform;
+}
+.tilt.tilting { transition: transform .08s linear; }
+.stack-card.tilt::after, .project-card.tilt::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 50%), rgba(34,211,238,.16), transparent 60%);
+  opacity: 0; transition: opacity .3s ease;
+}
+.stack-card.tilt:hover::after, .project-card.tilt:hover::after { opacity: 1; }
+.tilt > * { transform: translateZ(28px); } /* leve profundidade no conteúdo */
+.stack-card.tilt > .tags, .project-card.tilt > .tags { transform: translateZ(40px); }
+
+/* ---- MARQUEE de tecnologias ---- */
+.marquee {
+  overflow: hidden; padding: 22px 0; border-block: 1px solid var(--border);
+  background: rgba(255,255,255,.015); white-space: nowrap;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.marquee-track { display: inline-flex; gap: 0; animation: marquee 34s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee-track span {
+  display: inline-flex; align-items: center; font-size: .92rem; color: var(--muted);
+  padding: 0 26px; position: relative;
+}
+.marquee-track span::after { content: "◆"; position: absolute; right: -4px; color: var(--cyan); opacity: .5; font-size: .5rem; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ---- scroll cue ---- */
+.scroll-cue {
+  position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  color: var(--faint); font-size: .7rem; letter-spacing: .25em; text-transform: uppercase;
+  opacity: 0; animation: cueIn .8s 1.6s ease forwards;
+}
+.scroll-cue-line { width: 1px; height: 42px; background: linear-gradient(var(--cyan), transparent); position: relative; overflow: hidden; }
+.scroll-cue-line::after { content: ""; position: absolute; top: -50%; left: 0; width: 100%; height: 50%; background: #fff; animation: cueDrop 1.8s ease-in-out infinite; }
+.scroll-cue:hover { color: var(--cyan); }
+@keyframes cueIn { to { opacity: 1; } }
+@keyframes cueDrop { 0% { top: -50%; } 60%, 100% { top: 100%; } }
+
+/* ---- hero entrance (stagger) ---- */
+body.ready .hero-copy > * { animation: heroUp .8s cubic-bezier(.2,.8,.2,1) backwards; }
+body.ready .hero-copy > *:nth-child(1) { animation-delay: .05s; }
+body.ready .hero-copy > *:nth-child(2) { animation-delay: .14s; }
+body.ready .hero-copy > *:nth-child(3) { animation-delay: .23s; }
+body.ready .hero-copy > *:nth-child(4) { animation-delay: .32s; }
+body.ready .hero-copy > *:nth-child(5) { animation-delay: .41s; }
+body.ready .hero-copy > *:nth-child(6) { animation-delay: .50s; }
+body.ready .hero-card { animation: heroCard 1s .35s cubic-bezier(.2,.8,.2,1) backwards; }
+@keyframes heroUp { from { opacity: 0; transform: translateY(26px); } }
+@keyframes heroCard { from { opacity: 0; transform: translateY(40px) rotateX(8deg); } }
+
+/* ---- responsivo extra ---- */
+@media (max-width: 720px) {
+  .tilt > *, .stack-card.tilt > .tags, .project-card.tilt > .tags { transform: none; }
+  .cursor-glow { display: none; }
+}
+
+/* ---- movimento reduzido: desliga tudo que é "wow" ---- */
+@media (prefers-reduced-motion: reduce) {
+  .intro { display: none !important; }
+  body.intro-active { overflow: auto; }
+  #bg-canvas, .cursor-glow { display: none !important; }
+  .marquee-track { animation: none !important; transform: none; }
+  .scroll-cue, .glow-1, .glow-2, .glow-3 { animation: none !important; }
+  .tilt { transform: none !important; }
+  body.ready .hero-copy > *, body.ready .hero-card { animation: none !important; }
+}
+
+/* ---- print: esconder elementos decorativos ---- */
+@media print {
+  .intro, .cursor-glow, #bg-canvas, .marquee, .scroll-cue { display: none !important; }
+}
