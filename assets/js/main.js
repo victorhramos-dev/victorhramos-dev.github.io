@@ -15,6 +15,27 @@
   };
   let currentLang = 'pt';
 
+  /* rotator (hero) — declarado ANTES de applyLang(), que chama resetRotator() */
+  const rotator = document.getElementById('rotator');
+  if (rotator) rotator.style.transition = 'opacity .22s ease';
+  let rotIdx = 0, rotTimer = null;
+  function setRotator(text) { if (rotator) rotator.textContent = text; }
+  function resetRotator() {
+    const words = rotatorWords[currentLang];
+    rotIdx = 0;
+    setRotator(words[0]);
+    if (rotTimer) { clearInterval(rotTimer); rotTimer = null; }
+    if (reduceMotion) return;
+    rotTimer = setInterval(function () {
+      const w = rotatorWords[currentLang];
+      rotIdx = (rotIdx + 1) % w.length;
+      if (rotator) {
+        rotator.style.opacity = '0';
+        setTimeout(function () { setRotator(w[rotIdx]); rotator.style.opacity = '1'; }, 220);
+      }
+    }, 2600);
+  }
+
   function applyLang(lang) {
     currentLang = (lang === 'en') ? 'en' : 'pt';
     document.documentElement.lang = (currentLang === 'en') ? 'en' : 'pt-BR';
@@ -108,27 +129,6 @@
   } else {
     statNums.forEach(function (el) { el.textContent = (el.dataset.count || '0') + (el.dataset.suffix || ''); });
   }
-
-  /* ---------- rotator (hero role) ---------- */
-  const rotator = document.getElementById('rotator');
-  let rotIdx = 0, rotTimer = null;
-  function setRotator(text) { if (rotator) rotator.textContent = text; }
-  function resetRotator() {
-    const words = rotatorWords[currentLang];
-    rotIdx = 0;
-    setRotator(words[0]);
-    if (rotTimer) { clearInterval(rotTimer); rotTimer = null; }
-    if (reduceMotion) return;
-    rotTimer = setInterval(function () {
-      const w = rotatorWords[currentLang];
-      rotIdx = (rotIdx + 1) % w.length;
-      if (rotator) {
-        rotator.style.opacity = '0';
-        setTimeout(function () { setRotator(w[rotIdx]); rotator.style.opacity = '1'; }, 220);
-      }
-    }, 2600);
-  }
-  if (rotator) { rotator.style.transition = 'opacity .22s ease'; }
 
   /* ---------- download CV (print -> PDF) ---------- */
   function printCV() { window.print(); }
